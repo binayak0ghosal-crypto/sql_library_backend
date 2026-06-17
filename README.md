@@ -9,19 +9,19 @@ This is a relational database-driven terminal application built using Python 3.1
 
 ---
 
-## 📊 Database Schema
+## Database Schema
 
 The relational schema coordinates data transformations across three core tables:
-+------------------+          +-----------------------+          +--------------------+
-|      Books       |          |     Transactions      |          |      Members       |
-+------------------+          +-----------------------+          +--------------------+
-| book_id (PK)     |<--------'| transaction_id (PK)   |          | member_id (PK)     |
-| title            |          | book_id (FK)          |`-------->| name               |
-| author           |          | member_id (FK)        |          | join_date          |
-| total_copies     |          | borrow_date           |          |                    |
-| available_copies |          | return_date           |          |                    |
-+------------------+          +-----------------------+          +--------------------+
 
+| Books Table (Primary) | Transactions Table (Junction) | Members Table (Primary) |
+| :--- | :--- | :--- |
+| `book_id` **(PK)** | `transaction_id` **(PK)** | `member_id` **(PK)** |
+| `title` | `book_id` **(FK ➔ Books)** | `name` |
+| `author` | `member_id` **(FK ➔ Members)** | `join_date` |
+| `total_copies` | `borrow_date` | |
+| `available_copies` | `return_date` | |
+
+* **PK** = Primary Key | **FK** = Foreign Key
 1. **`Books`**: Manages the unique catalog items, total library acquisitions, and real-time floating inventory shelves (`available_copies`).
 2. **`Members`**: Maintains registered library cardholder data.
 3. **`Transactions`**: Maps actions between `Books` and `Members`, archiving historical date stamps for active borrow statuses and closing updates.
